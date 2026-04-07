@@ -4,6 +4,10 @@ import ProductCard from "../components/ProductCard";
 function Store() {
   const [products, setProducts] = useState([]);
 
+  const API = process.env.REACT_APP_API;
+
+fetch(`${API}/api/products`)
+
   useEffect(() => {
     fetch("https://dlux-backend.onrender.com/api/products")
       .then(res => res.json())
