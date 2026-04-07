@@ -1,38 +1,27 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 
-function Store() {
+const API = process.env.REACT_APP_API;
+
+export default function Store() {
   const [products, setProducts] = useState([]);
 
-  const API = process.env.REACT_APP_API;
-
-fetch(`${API}/api/products`)
-
   useEffect(() => {
-    fetch("https://dlux-backend.onrender.com/api/products")
+    fetch(`${API}/api/products`)
       .then(res => res.json())
-      .then(data => {
-        console.log("Products:", data);
-        setProducts(data);
-      })
-      .catch(err => console.error(err));
+      .then(data => setProducts(data));
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Store 🛒</h1>
+    <div>
+      <h1>Store</h1>
 
-      <div style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "20px"
-      }}>
-        {products.map(product => (
-          <ProductCard key={product._id} product={product} />
-        ))}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+        {Array.isArray(products) &&
+          products.map(p => (
+            <ProductCard key={p._id} product={p} />
+          ))}
       </div>
     </div>
   );
 }
-
-export default Store;

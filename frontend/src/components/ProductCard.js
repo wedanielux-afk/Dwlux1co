@@ -1,33 +1,23 @@
-function ProductCard({ product }) {
+import { useCart } from "../context/CartContext";
+
+const ProductCard = ({ product }) => {
+  const { addToCart } = useCart();
+
   return (
-    <div
-      style={{
-        border: "1px solid #ddd",
-        padding: "15px",
-        width: "200px",
-        borderRadius: "10px",
-        textAlign: "center"
-      }}
-    >
-      <img src={product.image} alt={product.name} width="150" />
+    <div style={{
+      border: "1px solid #eee",
+      padding: 20,
+      borderRadius: 12
+    }}>
+      <img src={product.image} width="100%" />
+      <h2>{product.name}</h2>
+      <p>${product.price}</p>
 
-      <h3>{product.name}</h3>
-
-      <p style={{ fontWeight: "bold" }}>${product.price}</p>
-
-      <p style={{ fontSize: "12px", color: "#555" }}>
-        {product.description}
-      </p>
-
-      <p style={{ fontSize: "12px" }}>
-        Stock: {product.stock}
-      </p>
-
-      <button style={{ marginTop: "10px" }}>
+      <button onClick={() => addToCart(product)}>
         Add to Cart
       </button>
     </div>
   );
-}
+};
 
 export default ProductCard;

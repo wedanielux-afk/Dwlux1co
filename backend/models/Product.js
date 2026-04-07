@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema({
   price: Number,
   image: String,
   description: String,
-  stock: Number
+  stock: Number,
 }, { timestamps: true });
 
 export default mongoose.model("Product", productSchema);
