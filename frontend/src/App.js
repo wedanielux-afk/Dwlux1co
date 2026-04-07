@@ -1,5 +1,14 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Store from "./pages/Store";
+
 function App() {
-  return <h1 style={{ padding: "20px" }}>🔥 APP WORKING</h1>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Store />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
